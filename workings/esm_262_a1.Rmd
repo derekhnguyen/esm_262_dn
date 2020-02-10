@@ -1,0 +1,21 @@
+---
+title: "ESM 262"
+author: "Derek Nguyen"
+date: "2/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Why am I taking this course?
+- I am taking this course so that I can continue to strengthen my programming skills. I also hope that this class offers real world environmental applications that I can translate directly to my professional work. I am also taking this class so that I have more personal data and code to refer to make sure I remember the coding skills I will learn in this class.
+
+
+Describe your data science background....
+- I have taken Allison Horst's 206 class and currently enrolled in her Advanced data analysis course this quarter as well. Other than that, I do not have any other prior data science experience.
+
+
+
+
