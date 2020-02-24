@@ -1,0 +1,78 @@
+---
+title: "windpower"
+author: "Derek Nguyen"
+date: "2/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(janitor)
+library(tidyverse)
+library(dplyr)
+```
+
+Generate sample `wind speeds` data for `windpower` function...
+```{r}
+# generating sample wind velocities...
+nsample = 100
+speed = rnorm(mean = 15, sd = 3.25, n = 100)
+
+# create dataframe to store results 
+# columns = speed and power. 
+df_wind = data.frame(speed = speed, power = NA)
+head(df_wind)
+```
+
+```{r}
+
+windpower = function(A, V, p=1.23, C_p=0.4) {
+  P = 0.5 * p * A * C_p * (V * V * V)
+  return(P)
+}
+
+# Assumed that swept area of of all turbines = 1962 m^2.
+df_wind$power = windpower(V=speed, A = 1962) 
+```
+
+```{r}
+ggplot(df_wind, aes(x = speed, y = power/1000000)) +
+  geom_point() +
+  labs(x = "Wind Speed (m/s)", y = "Power (MW)",
+       title = "Power Produced based on Wind Speed") +
+  theme_minimal()
+```
+
+Generate sample `blade area` data for `windpower` function...
+```{r}
+# Blade areas calculated pi*r^2...
+nsample = 100
+blade_area = rnorm(mean = 3846, sd = 50, n = 100)
+
+df_area = data.frame(blade_area = blade_area, power = NA)
+head(df_area)
+
+```
+
+```{r}
+
+windpower = function(A, V, p=1.23, C_p=0.4) {
+  P = 0.5 * p * A * C_p * (V * V * V)
+  return(P)
+}
+
+df_area$power = windpower(A=blade_area, V = 10) 
+```
+
+
+```{r}
+ggplot(data = df_area, aes(x = blade_area, y = power/1000)) +
+  geom_point() +
+  labs(title = "Power Generated based on a Blade Area",
+       y = "Power (kW)",
+       x = "Blade Area (m^2)") +
+  theme_minimal()
+```
+
+Results:
+- The outputs of this function show positive positive trends between blade area and power and wind speed and power generated. Ultimately, higher wind speeds and longer turbine blades result in greater power generated. 
